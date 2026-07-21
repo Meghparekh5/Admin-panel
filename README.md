@@ -1,4 +1,4 @@
-# 🍪 Admin Panel - Cookie Authentication
+# 🍪 Admin Panel
 
 A secure and responsive **Admin Panel** built with **Node.js, Express.js, MongoDB, EJS, and Bootstrap**. This project implements **cookie-based authentication** with complete CRUD operations for admin management, secure password hashing, profile image upload, and a modern responsive interface.
 
