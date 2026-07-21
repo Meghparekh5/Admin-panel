@@ -1,0 +1,29 @@
+const express = require('express');
+
+const route = express.Router();
+
+const categoryController = require('../controller/categoryController');
+
+const Category = require('../models/category');
+
+const passport = require('passport');
+
+const role = require('../config/roleMiddleware')
+
+const auth = require('../config/auth');
+
+route.get('/add-category',auth.checkAuth,role.checkRole('Super Admin' , 'Admin' ),categoryController.addCategoryPage);
+
+route.post('/insert-category', auth.checkAuth, Category.uploadImage, categoryController.insertCategory);
+
+route.get('/view-category' ,auth.checkAuth,role.checkRole('Super Admin' , 'Admin' , 'Manager' , 'Employee') ,categoryController.viewCategoryPage);
+
+route.get('/edit-category/:id',auth.checkAuth,role.checkRole('Super Admin' , 'Admin'),categoryController.editCategoryPage);
+
+route.post('/update-category/:id',auth.checkAuth,role.checkRole('Super Admin' , 'Admin' , 'Manager'),auth.checkAuth, Category.uploadImage,categoryController.updateCategory);
+
+route.get('/changeStatus/:id',auth.checkAuth,   role.checkRole('Super Admin' , 'Admin' , 'Manager'),auth.checkAuth,categoryController.changeStatus);
+
+route.get("/delete-category/:id",auth.checkAuth,role.checkRole('Super Admin' , 'Admin' ), categoryController.deleteCategory);
+
+module.exports = route;
